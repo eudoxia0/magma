@@ -65,6 +65,35 @@ typeof(3.14) b = 3.14;
 /* The above is, in fact, valid */
 ```
 
+## Algebraic Data Types
+
+**File:** `type/adt.c`
+
+**Examples**:
+
+```c
+#include <stdio.h>
+
+data Token {
+  Integer { int i; };
+  String  { char* str; };
+}
+
+int main() {
+  Token a, b;
+  construct(a, Token -> Integer) { 10 };
+  construct(b, Token -> String) { "test" };
+  switch(a.type) {
+    case TokenInteger:
+      return a.Integer.i;
+      break;
+    case TokenString:
+      puts(b.String.str);
+      break;
+  }
+}
+```
+
 ## Tuples
 
 **File:** `type/tuple.c`
