@@ -48,6 +48,23 @@ int main() {
 
 # Type System
 
+## Type-Inferenced Variables
+
+**File:** `type/var.c`
+
+**Examples**:
+
+```c
+/* Input */
+var a = 10;
+var b = 3.14;
+
+/* Output */
+typeof(10) a = 10;
+typeof(3.14) b = 3.14;
+/* The above is, in fact, valid */
+```
+
 ## Tuples
 
 **File:** `type/tuple.c`
