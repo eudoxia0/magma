@@ -15,8 +15,34 @@ cmacro provides a middleground: It bridges the power and control of C with the
 high-level metaprogramming systems of Lisp. This library uses cmacro to extend
 the capabilities of the C language.
 
+# Example
+
 # Installing
 
 Once you've [built and installed](https://github.com/eudoxia0/cmacro#installing)
 cmacro, simply put these files in a directory where they can be included by
 cmacro.
+
+# Utilities
+
+## `doto`
+
+**File:** `util/doto.c`
+
+**Examples**:
+
+```c
+/* Input */
+void cancelAccount(Account* account) {
+  doto(account) {
+    setBalance(0);
+    setStatus(DISABLED);
+  }
+}
+
+/* Output */
+void cancelAccount(Account* account) {
+  setBalance(account, 0);
+  setStatus(account, DISABLED);
+}
+```
