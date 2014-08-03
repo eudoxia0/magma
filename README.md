@@ -46,7 +46,31 @@ int main() {
 }
 ```
 
-# Anaphoric Macros
+# Type System
+
+## Tuples
+
+**File:** `type/tuple.c`
+
+**Examples**:
+
+```c
+/* Input */
+typedef tup(int, int) pair;
+
+pair divrem(int n, int d) {
+  return (pair){n/d, n%d};
+}
+
+/* Output */
+typedef struct { int first; int second; } pair;
+
+pair divrem(int n, int d) {
+  return (pair){n/d, n%d};
+}
+```
+
+## Anaphoric Macros
 
 ## `if`
 
