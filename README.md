@@ -46,6 +46,28 @@ int main() {
 }
 ```
 
+# Anaphoric Macros
+
+## `if`
+
+**File:** `anaphoric/if.c`
+
+**Examples**:
+
+```c
+int main() {
+  aif (5 > 1)
+    return it;
+}
+
+
+/* Output */
+int main() {
+  aif (5 > 1)
+    return it;
+}
+```
+
 # Utilities
 
 ## `doto`
