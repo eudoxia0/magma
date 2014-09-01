@@ -125,14 +125,15 @@ pair divrem(int n, int d) {
 ```c
 /* Input */
 int main() {
-  aif (5 > 1)
+  aif(5 > 1)
     return it;
 }
 
 
 /* Output */
 int main() {
-  aif (5 > 1)
+  typeof(5 > 1) it = 5 > 1;
+  if(it)
     return it;
 }
 ```
