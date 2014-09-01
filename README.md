@@ -169,15 +169,31 @@ void cancelAccount(Account* account) {
 
 ```c
 int main() {
-  withAllocation(ptr, int, 10) {
+  with_allocation(ptr, int, 10) {
     size_t i;
     for(i = 0; i < 10; i++) {
       ptr[i] = i*2;
     }
   }
-  withAllocation(p, int) {
+  with_allocation(p, int) {
     *p = 10;
     return *p;
   }
+}
+```
+
+## `with_open_file`
+
+**File:** `util/with_open_file.c`
+
+**Examples:**
+
+```c
+int main() {
+  with_open_file(file, "README.md", "r") {
+    printf("The first character in the README is: %c\n",
+           fgetc(file));
+  }
+  return 0;
 }
 ```
