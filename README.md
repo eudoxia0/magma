@@ -27,7 +27,7 @@ cmacro.
 
 **File:** `fn/lambda.c`
 
-**Examples**:
+**Examples:**
 
 ```c
 int main() {
@@ -50,7 +50,7 @@ int main() {
 
 **File:** `type/var.c`
 
-**Examples**:
+**Examples:**
 
 ```c
 /* Input */
@@ -67,7 +67,7 @@ typeof(3.14) b = 3.14;
 
 **File:** `type/adt.c`
 
-**Examples**:
+**Examples:**
 
 ```c
 #include <stdio.h>
@@ -96,7 +96,7 @@ int main() {
 
 **File:** `type/tuple.c`
 
-**Examples**:
+**Examples:**
 
 ```c
 /* Input */
@@ -120,7 +120,7 @@ pair divrem(int n, int d) {
 
 **File:** `anaphoric/if.c`
 
-**Examples**:
+**Examples:**
 
 ```c
 /* Input */
@@ -143,7 +143,7 @@ int main() {
 
 **File:** `util/doto.c`
 
-**Examples**:
+**Examples:**
 
 ```c
 /* Input */
