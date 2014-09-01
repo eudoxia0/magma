@@ -160,3 +160,24 @@ void cancelAccount(Account* account) {
   setStatus(account, DISABLED);
 }
 ```
+
+## `with_allocation`
+
+**File:** `util/with_allocation.c`
+
+**Examples:**
+
+```c
+int main() {
+  withAllocation(ptr, int, 10) {
+    size_t i;
+    for(i = 0; i < 10; i++) {
+      ptr[i] = i*2;
+    }
+  }
+  withAllocation(p, int) {
+    *p = 10;
+    return *p;
+  }
+}
+```
