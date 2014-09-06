@@ -52,6 +52,24 @@ int main() {
 }
 ```
 
+## Lazy Evaluation
+
+### Syntax
+
+- `delay <expr>`
+- `force <expr>`
+
+### Description
+
+`delay` takes an expression `expr` and delays its computation until the required
+time. `force` takes this computation and executes it, returning its value.
+
+### Examples
+
+```c
+force (delay 1) == 1;
+```
+
 # Type System
 
 ## Type-Inferenced Variables
