@@ -25,11 +25,19 @@ cmacro.
 
 ## Anonymous Functions
 
-**File:** `fn/lambda.c`
+### Syntax
 
-**Examples:**
+`lambda (<args>*) -> <ret> { <body>* }`
+
+### Description
+
+Defines an anonymous function, returning a pointer to it.
+
+### Examples
 
 ```c
+cmacro_import "fn/lambda.c"
+
 int main() {
   int array[] = {423, 61, 957, 133, 969,
                  829, 821, 390, 704, 596};
@@ -48,29 +56,46 @@ int main() {
 
 ## Type-Inferenced Variables
 
-**File:** `type/var.c`
+### Syntax
 
-**Examples:**
+`var <name> = <value>`
+
+### Description
+
+Defines an implicitly-typed variable `var`, giving it the value `value`. It is
+not possible to define a variable without an initial value.
+
+### Examples
 
 ```c
 /* Input */
-var a = 10;
-var b = 3.14;
+cmacro_import "type/var.c"
+
+void f() {
+  var a = 10;
+  var b = 3.14;
+}
 
 /* Output */
-typeof(10) a = 10;
-typeof(3.14) b = 3.14;
-/* The above is, in fact, valid */
+void f() {
+  typeof(10) a = 10;
+  typeof(3.14) b = 3.14;
+  /* The above is, in fact, valid */
+}
 ```
 
 ## Algebraic Data Types
 
-**File:** `type/adt.c`
+### Syntax
 
-**Examples:**
+### Description
+
+### Examples
 
 ```c
 #include <stdio.h>
+
+cmacro_import "type/adt.c"
 
 data Token {
   Integer { int i; };
@@ -94,12 +119,16 @@ int main() {
 
 ## Tuples
 
-**File:** `type/tuple.c`
+### Syntax
 
-**Examples:**
+### Description
+
+### Examples
 
 ```c
 /* Input */
+cmacro_import "type/tuple.c"
+
 typedef tup(int, int) pair;
 
 pair divrem(int n, int d) {
@@ -116,14 +145,28 @@ pair divrem(int n, int d) {
 
 ## Anaphoric Macros
 
+Anaphoric macros store the output of an important argument (Like the condition
+in the `if` statement) in a variable named `it` so they can be accessed in the
+statement body.
+
 ## `if`
 
-**File:** `anaphoric/if.c`
+### Syntax
 
-**Examples:**
+- `aif <cond> <true-branch>`
+- `aif <cond> <true-branch> else <false-branch>`
+
+### Description
+
+The value of `cond` is stored in the variable `it`, which is accessible in the
+scope of either branch.
+
+### Examples
 
 ```c
 /* Input */
+cmacro_import "anaphoric/if.c"
+
 int main() {
   aif(5 > 1)
     return it;
@@ -142,12 +185,20 @@ int main() {
 
 ## `doto`
 
-**File:** `util/doto.c`
+### Syntax
 
-**Examples:**
+`doto(obj) { <fn>(<args>*);+ }`
+
+### Description
+
+Calls every `fn`, with `obj` appended to the beginning of its argument list.
+
+### Examples
 
 ```c
 /* Input */
+cmacro_import "util/doto.c"
+
 void cancelAccount(Account* account) {
   doto(account) {
     setBalance(0);
@@ -164,11 +215,22 @@ void cancelAccount(Account* account) {
 
 ## `with_allocation`
 
-**File:** `util/with_allocation.c`
+### Syntax
 
-**Examples:**
+- `with_allocation(<ptr>, <type>) { <body>* }`
+- `with_allocation(<ptr>, <type>, <length>) { <body>* }`
+
+### Description
+
+Allocates memory to hold `type`, optionally an array of `type` if `length` is
+specified. The pointer is stored in the variable `ptr` and `free`'d after `body`
+is executed.
+
+### Examples
 
 ```c
+cmacro_import "util/with_allocation.c"
+
 int main() {
   with_allocation(ptr, int, 10) {
     size_t i;
@@ -185,11 +247,20 @@ int main() {
 
 ## `with_open_file`
 
-**File:** `util/with_open_file.c`
+### Syntax
 
-**Examples:**
+`with_open_file(<stream>, <filepath>, <mode>) { <body>* }`
+
+### Description
+
+Opens `filepath` with mode `mode`, assigning it to the variable `stream`, then
+executes body and closes the stream.
+
+### Examples
 
 ```c
+cmacro_import "util/with_open_file.c"
+
 int main() {
   with_open_file(file, "README.md", "r") {
     printf("The first character in the README is: %c\n",
